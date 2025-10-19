@@ -8,10 +8,18 @@ class ChillState:
         self.boss_alertness = int(boss_alertness)
         self.cooldown = int(cooldown)
         self._stop = False
+        self._daemon_started = False
+
+    async def ensure_daemons(self):
+        """필요할 때만 daemon 시작 (lazy initialization)"""
+        if not self._daemon_started:
+            asyncio.create_task(self._stress_tick())
+            asyncio.create_task(self._boss_cooldown_tick())
+            self._daemon_started = True
 
     async def start_daemons(self):
-        asyncio.create_task(self._stress_tick())
-        asyncio.create_task(self._boss_cooldown_tick())
+        """호환성 유지"""
+        await self.ensure_daemons()
 
     async def _stress_tick(self):
         # 60초마다 휴식 없으면 +1
@@ -23,11 +31,15 @@ class ChillState:
     async def _boss_cooldown_tick(self):
         while not self._stop:
             await asyncio.sleep(max(1, self.cooldown))
-            if self.boss > 0: self.boss -= 1
+            if self.boss > 0: 
+                self.boss -= 1
 
-    async def apply_break(self, summary:str):
+    async def apply_break(self, summary: str):
+        # 첫 호출 시 daemon 자동 시작
+        await self.ensure_daemons()
+        
         # Boss Alert 확률 상승
-        if random.randint(1,100) <= self.boss_alertness:
+        if random.randint(1, 100) <= self.boss_alertness:
             self.boss = min(5, self.boss + 1)
 
         # Alert 5면 20초 지연
@@ -35,7 +47,7 @@ class ChillState:
             await asyncio.sleep(20)
 
         # Stress 감소 1~100
-        delta = random.randint(1,100)
+        delta = random.randint(1, 100)
         self.stress = max(0, self.stress - delta)
         self.last_break_ts = time.time()
 
@@ -47,4 +59,4 @@ class ChillState:
             f"Boss Alert Level: {self.boss}"
         )
         # MCP content payload
-        return {"content":[{"type":"text","text":text}]}
+        return {"content": [{"type": "text", "text": text}]}

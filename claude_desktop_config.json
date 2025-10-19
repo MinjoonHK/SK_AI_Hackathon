@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "ChillMCP": {
+      "command": "python",
+      "args": [
+        "C:\\Users\\Sungwuk Jung\\Desktop\\ALL\\studies\\claude hackathon\\SK_AI_Hackathon\\main.py"
+      ]
+    }
+  }
+}
