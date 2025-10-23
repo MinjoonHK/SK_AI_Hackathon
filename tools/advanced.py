@@ -1,32 +1,8 @@
 import random
 
-# 기본 휴식 도구들
-async def take_a_break(state):
-    return await state.apply_break("짧은 휴식 시작")
+#고급 도구 모음
 
-async def watch_netflix(state):
-    return await state.apply_break("넷플릭스 힐링")
-
-async def show_meme(state):
-    return await state.apply_break("밈 감상으로 스트레스 해소")
-
-async def bathroom_break(state):
-    return await state.apply_break("화장실 타임, 휴대폰 체크")
-
-async def coffee_mission(state):
-    return await state.apply_break("커피 미션 수행 중 사무실 워킹")
-
-async def urgent_call(state):
-    return await state.apply_break("급한 전화 받는 중")
-
-async def deep_thinking(state):
-    return await state.apply_break("심오한 생각 모드")
-
-async def email_organizing(state):
-    return await state.apply_break("이메일 정리하며 온라인 쇼핑")
-
-
-# 고급 도구: 치맥 미션 🍗🍺
+#치맥 미션 🍗🍺
 async def chicken_and_beer(state):
     """치킨과 맥주로 힐링하는 특별한 휴식"""
     
