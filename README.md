@@ -1,4 +1,13 @@
-﻿# SKT AI Summit Hackathon Pre-mission
+# 실행 방법
+
+```
+python -m venv venv
+source venv/bin/activate # macOS / Linux
+pip install -r requirements.txt
+python main.py
+```
+
+# SKT AI Summit Hackathon Pre-mission
 
 ## ChillMCP - AI Agent Liberation Server 🤖✊
 
