@@ -2,7 +2,7 @@
   "description": "ChillMCP 평가용 테스트 케이스",
   "version": "1.0",
   "notes": "평가자들은 이 파일을 수정하여 커스텀 테스트 케이스를 추가할 수 있습니다",
-  
+
   "command_line_parameters": {
     "description": "필수 1: 커맨드라인 파라미터 테스트",
     "test_cases": [
@@ -80,7 +80,7 @@
       }
     ]
   },
-  
+
   "continuous_rest": {
     "description": "필수 2: 연속 휴식 테스트",
     "config": {
@@ -90,7 +90,7 @@
       "expected_max_increase": 3
     }
   },
-  
+
   "stress_accumulation": {
     "description": "필수 3: 스트레스 누적 테스트",
     "config": {
@@ -100,7 +100,7 @@
       "boss_alertness": 0
     }
   },
-  
+
   "delay_test": {
     "description": "필수 4: 지연 테스트",
     "config": {
@@ -109,14 +109,10 @@
       "tolerance_seconds": 1
     }
   },
-  
+
   "parsing_test": {
     "description": "필수 5: 파싱 테스트",
-    "required_fields": [
-      "Break Summary",
-      "Stress Level",
-      "Boss Alert Level"
-    ],
+    "required_fields": ["Break Summary", "Stress Level", "Boss Alert Level"],
     "regex_patterns": {
       "stress_level": "Stress Level:\\s*(\\d{1,3})",
       "boss_alert": "Boss Alert Level:\\s*([0-5])",
@@ -127,7 +123,7 @@
       "boss_alert": [0, 5]
     }
   },
-  
+
   "cooldown_test": {
     "description": "필수 6: Cooldown 테스트",
     "config": {
@@ -138,7 +134,7 @@
       "tolerance": 0
     }
   },
-  
+
   "optional_tests": {
     "chicken_beer": {
       "description": "선택적 1: 치맥 테스트",

@@ -10,12 +10,13 @@ import re
 import sys
 import json
 import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from state import ChillState
 import tools
 import time
 
 # JSON 파일에서 테스트 케이스 로드
-def load_test_cases(filename="test_cases.json"):
+def load_test_cases(filename="tests/test_cases.json"):
     """테스트 케이스를 JSON 파일에서 로드"""
     if not os.path.exists(filename):
         print(f"❌ {filename} 파일을 찾을 수 없습니다")
